@@ -1,5 +1,7 @@
-import { submitContact } from "./api.js";
 import { initRevealAnimations, initContributionGrid } from "./animations.js";
+
+const WHATSAPP_PHONE_NUMBER =
+  window.PORTFOLIO_WHATSAPP_NUMBER || "7618639841";
 
 const projects = [
   {
@@ -22,18 +24,7 @@ const projects = [
     tech: ["Node.js", "MongoDB", "Maps"],
     image: "image-four",
     github: "https://github.com",
-    live: "https://example.com",
-  },
-  {
-    title: "Relay Systems",
-    category: "fullstack",
-    type: "Full stack",
-    description:
-      "A command center for distributed operations, alerts, and human decisions.",
-    tech: ["Express.js", "MongoDB", "WebSockets"],
-    image: "image-six",
-    github: "https://github.com",
-    live: "https://example.com",
+    live: "https://thelooksfamilysalon.vercel.app",
   },
 ];
 
@@ -119,40 +110,53 @@ function initTheme() {
 function initContactForm() {
   const form = $("#contact-form");
   const status = $(".form-status");
-  form.addEventListener("submit", async (event) => {
+
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
+
     $$(".field-error", form).forEach((error) => {
       error.textContent = "";
     });
+
     const data = Object.fromEntries(new FormData(form));
     let valid = true;
+
     $$("input, textarea", form).forEach((field) => {
       if (!field.checkValidity()) {
         valid = false;
         field.nextElementSibling.textContent = field.validationMessage;
       }
     });
+
     if (!valid) {
       status.textContent = "Please check the highlighted fields.";
       status.className = "form-status error";
       return;
     }
+
     const button = $(".submit-button");
     button.disabled = true;
-    button.innerHTML = "Sending <span>…</span>";
+    button.innerHTML = "Opening WhatsApp <span>…</span>";
     status.textContent = "";
-    try {
-      await submitContact(data);
-      form.reset();
-      status.textContent = "Message received. I’ll be in touch soon.";
-      status.className = "form-status";
-    } catch (error) {
-      status.textContent = error.message;
-      status.className = "form-status error";
-    } finally {
-      button.disabled = false;
-      button.innerHTML = "Send message <span>↗</span>";
-    }
+
+    const messageTemplate = [
+      "Hello, I’d like to connect.",
+      `Name: ${String(data.name || "").trim()}`,
+      `Email: ${String(data.email || "").trim()}`,
+      `Subject: ${String(data.subject || "").trim()}`,
+      "",
+      "Message:",
+      String(data.message || "").trim(),
+    ].join("\n");
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(messageTemplate)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    form.reset();
+    status.textContent = "Opening WhatsApp with your message.";
+    status.className = "form-status";
+    button.disabled = false;
+    button.innerHTML = "Send message <span>↗</span>";
   });
 }
 
