@@ -1,0 +1,13 @@
+{
+  "name": "developer-portfolio-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "start": "npx serve . -l 3000",
+    "build": "echo 'Static frontend build complete'"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
