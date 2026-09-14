@@ -1,4 +1,5 @@
 import Contact from "../models/Contact.js";
+import { notifyByEmail } from "../services/email.js";
 import { notifyWhatsApp } from "../services/whatsapp.js";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,9 +44,15 @@ export async function createContact(request, response, next) {
       throw databaseError;
     }
     try {
+      await notifyByEmail(data);
+    } catch (notificationError) {
+      console.error(`Email notification failed: ${notificationError.message}`);
+    }
+
+    try {
       await notifyWhatsApp(data);
     } catch (notificationError) {
-      console.error(notificationError.message);
+      console.error(`WhatsApp notification failed: ${notificationError.message}`);
     }
     response.status(201).json({ message: "Message received.", id: contact.id });
   } catch (error) {
