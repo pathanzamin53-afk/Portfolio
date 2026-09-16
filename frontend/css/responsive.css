@@ -33,6 +33,15 @@
   }
 }
 @media (max-width: 620px) {
+  .hero-copy,
+  .hero-visual,
+  .about-copy,
+  .contact-copy,
+  .contact-form,
+  .project-card,
+  .testimonial {
+    min-width: 0;
+  }
   .shell {
     width: calc(100% - 32px);
   }
@@ -81,6 +90,7 @@
   }
   .hero h1 {
     font-size: 50px;
+    overflow-wrap: anywhere;
   }
   .hero-intro {
     font-size: 14px;
@@ -92,8 +102,10 @@
     min-height: 330px;
   }
   .code-window {
+    max-width: 100%;
     transform: none;
     font-size: 10px;
+    overflow: hidden;
   }
   .code-body {
     font-size: 9px;
@@ -191,14 +203,29 @@
     flex-wrap: wrap;
     gap: 20px;
   }
+  .footer-links {
+    flex-wrap: wrap;
+  }
   .site-footer p {
     order: 3;
     width: 100%;
   }
   .project-modal {
+    max-height: calc(100vh - 30px);
+    overflow: auto;
     padding: 30px 23px;
   }
   .project-modal h2 {
     font-size: 34px;
+    overflow-wrap: anywhere;
+  }
+  .modal-links,
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+  .contact-detail a,
+  .window-title,
+  .project-info h3 {
+    overflow-wrap: anywhere;
   }
 }
