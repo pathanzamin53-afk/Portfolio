@@ -16,7 +16,7 @@ const projects = [
     live: "https://demo-avhj.vercel.app/",
   },
   {
-    title: "LOOKS THE FAMILY SALON",
+    title: "Elysian Glow",
     category: "fullstack",
     type: "Full stack",
     description:
