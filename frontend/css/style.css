@@ -149,6 +149,8 @@ span {
 .section {
   padding-top: 140px;
   padding-bottom: 140px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
 }
 .hero {
   min-height: 780px;
@@ -401,6 +403,28 @@ h2 span {
   bottom: 10px;
   left: -30px;
   opacity: 0.1;
+}
+@media (max-width: 620px) {
+  .noise,
+  .orb {
+    display: none;
+  }
+  .site-header {
+    backdrop-filter: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 .orbit-label {
   position: absolute;
