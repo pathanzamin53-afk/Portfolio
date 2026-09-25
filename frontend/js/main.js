@@ -27,6 +27,17 @@ const projects = [
     live: "https://thelooksfamilysalon.vercel.app",
   },
 ];
+{
+    title: "Star-Catcher-Game",
+    category: "Frontend",
+    type: "Front-end",
+    description:
+      "A gameplay arena for high-speed reflexes, cosmic collection, and precision scores.",
+    tech: ["Hypertext Markup Language", "Cascading Style Sheets", "JavaScript"],
+    image: "image-six",
+    github: "https://github.com",
+    live: "https://example.com",
+  },
 
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [
