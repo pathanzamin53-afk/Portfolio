@@ -26,7 +26,6 @@ const projects = [
     github: "https://github.com",
     live: "https://thelooksfamilysalon.vercel.app",
   },
-];
 {
     title: "Star-Catcher-Game",
     category: "Frontend",
@@ -38,7 +37,7 @@ const projects = [
     github: "https://github.com",
     live: "https://star-catcher-iota.vercel.app/",
   },
-];
+
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [
   ...parent.querySelectorAll(selector),
