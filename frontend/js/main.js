@@ -36,7 +36,7 @@ const projects = [
     tech: ["Hypertext Markup Language", "Cascading Style Sheets", "JavaScript"],
     image: "image-six",
     github: "https://github.com",
-    live: "https://example.com",
+    live: "https://star-catcher-iota.vercel.app/",
   },
 
 const $ = (selector, parent = document) => parent.querySelector(selector);
