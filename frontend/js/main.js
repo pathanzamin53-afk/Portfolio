@@ -1,4 +1,8 @@
+import { inject } from '@vercel/analytics';
 import { initRevealAnimations, initContributionGrid } from "./animations.js";
+
+// Initialize Vercel Web Analytics
+inject();
 
 const WHATSAPP_PHONE_NUMBER =
   window.PORTFOLIO_WHATSAPP_NUMBER || "7618639841";
