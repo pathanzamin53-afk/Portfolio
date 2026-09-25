@@ -26,9 +26,9 @@ const projects = [
     github: "https://github.com",
     live: "https://thelooksfamilysalon.vercel.app",
   },
-{
+  {
     title: "Star-Catcher-Game",
-    category: "FullStack",
+    category: "fullstack", // Fixed: "FullStack" ko "fullstack" kiya
     type: "Frontend",
     description:
       "A gameplay arena for high-speed reflexes, cosmic collection, and precision scores.",
@@ -37,9 +37,9 @@ const projects = [
     github: "https://github.com",
     live: "https://star-catcher-iota.vercel.app/",
   },
+]; // Fixed: Closing bracket lagaya
 
-const $ = (selector, parent = document) => parent.querySelector(selector);
-const $$ = (selector, parent = document) => [
+const $ = (selector, parent = document) => parent.querySelector(selector); const $$ = (selector, parent = document) => [
   ...parent.querySelectorAll(selector),
 ];
 
@@ -48,12 +48,17 @@ function renderProjects(filter = "all") {
     filter === "all"
       ? projects
       : projects.filter((project) => project.category === filter);
-  $("#projects-grid").innerHTML = list
+
+  const grid = $("#projects-grid");
+  if (!grid) return;
+
+  grid.innerHTML = list
     .map(
       (project, index) =>
         `<article class="project-card" data-project="${projects.indexOf(project)}" style="animation-delay:${index * 70}ms"><div class="project-image ${project.image}"><span class="project-number">0${projects.indexOf(project) + 1} / ${project.type}</span></div><div class="project-info"><h3>${project.title}</h3><p>${project.description}</p><div class="tags">${project.tech.map((tech) => `<span class="tag">${tech}</span>`).join("")}</div></div></article>`,
     )
     .join("");
+
   $$(".project-card").forEach((card) =>
     card.addEventListener("click", () =>
       openProject(Number(card.dataset.project)),
@@ -63,23 +68,24 @@ function renderProjects(filter = "all") {
 
 function openProject(index) {
   const project = projects[index];
-  $("#modal-content").innerHTML =
+  const modalContent = $("#modal-content");
+  const projectModal = $("#project-modal");
+
+  if (!modalContent || !projectModal) return;
+
+  modalContent.innerHTML =
     `<span class="modal-kicker">${project.type} / 2025</span><h2>${project.title}</h2><p>${project.description} This sample case study is ready for your own project details, outcomes, and story.</p><div class="tags">${project.tech.map((tech) => `<span class="tag">${tech}</span>`).join("")}</div><div class="modal-links"><a class="button button-primary" href="${project.live}" target="_blank" rel="noreferrer">Live demo ↗</a><a class="button button-ghost" href="${project.github}" target="_blank" rel="noreferrer">GitHub ↗</a></div>`;
-  $("#project-modal").showModal();
+  
+  projectModal.showModal();
 }
 
 function initNavigation() {
   const menu = $(".menu-toggle");
-  const links = $(".nav-links");
-  menu.addEventListener("click", () => {
-    const open = links.classList.toggle("open");
-    menu.setAttribute("aria-expanded", open);
-  });
-  $$(".nav-link").forEach((link) =>
-    link.addEventListener("click", () => links.classList.remove("open")),
+  const links = $(".nav-links");   if (menu && links) {     menu.addEventListener("click", () => {       const open = links.classList.toggle("open");       menu.setAttribute("aria-expanded", open);     });   }    $$(".nav-link").forEach((link) =>
+    link.addEventListener("click", () => links?.classList.remove("open")),
   );
-  const sections = $$("main section[id]");
-  const navLinks = $$(".nav-link");
+
+  const sections = $$("main section[id]");   const navLinks = $$(".nav-link");
   const observer = new IntersectionObserver(
     (entries) =>
       entries.forEach((entry) => {
@@ -98,8 +104,11 @@ function initNavigation() {
 
 function initTheme() {
   const button = $(".theme-toggle");
+  if (!button) return;
+
   const saved = localStorage.getItem("portfolio-theme");
   if (saved === "light") document.body.classList.add("light");
+  
   const update = () => {
     const light = document.body.classList.toggle("light");
     localStorage.setItem("portfolio-theme", light ? "light" : "dark");
@@ -107,47 +116,49 @@ function initTheme() {
       "aria-label",
       `Switch to ${light ? "dark" : "light"} theme`,
     );
-    $(".theme-icon", button).textContent = light ? "☾" : "☼";
+    const icon = $(".theme-icon", button);
+    if (icon) icon.textContent = light ? "☾" : "☼";
   };
+
   button.addEventListener("click", update);
-  $(".theme-icon", button).textContent = document.body.classList.contains(
-    "light",
-  )
-    ? "☾"
-    : "☼";
+  const icon = $(".theme-icon", button);
+  if (icon) {
+    icon.textContent = document.body.classList.contains("light") ? "☾" : "☼";
+  }
 }
 
 function initContactForm() {
   const form = $("#contact-form");
   const status = $(".form-status");
+  if (!form) return;
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    $$(".field-error", form).forEach((error) => {
-      error.textContent = "";
-    });
-
-    const data = Object.fromEntries(new FormData(form));
-    let valid = true;
-
-    $$("input, textarea", form).forEach((field) => {
+    $$(".field-error", form).forEach((error) => {       error.textContent = "";     });      const data = Object.fromEntries(new FormData(form));     let valid = true;      $$
+("input, textarea", form).forEach((field) => {
       if (!field.checkValidity()) {
         valid = false;
-        field.nextElementSibling.textContent = field.validationMessage;
+        if (field.nextElementSibling) {
+          field.nextElementSibling.textContent = field.validationMessage;
+        }
       }
     });
 
     if (!valid) {
-      status.textContent = "Please check the highlighted fields.";
-      status.className = "form-status error";
+      if (status) {
+        status.textContent = "Please check the highlighted fields.";
+        status.className = "form-status error";
+      }
       return;
     }
 
     const button = $(".submit-button");
-    button.disabled = true;
-    button.innerHTML = "Opening WhatsApp <span>…</span>";
-    status.textContent = "";
+    if (button) {
+      button.disabled = true;
+      button.innerHTML = "Opening WhatsApp <span>…</span>";
+    }
+    if (status) status.textContent = "";
 
     const messageTemplate = [
       "Hello, I’d like to connect.",
@@ -163,10 +174,14 @@ function initContactForm() {
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
     form.reset();
-    status.textContent = "Opening WhatsApp with your message.";
-    status.className = "form-status";
-    button.disabled = false;
-    button.innerHTML = "Send message <span>↗</span>";
+    if (status) {
+      status.textContent = "Opening WhatsApp with your message.";
+      status.className = "form-status";
+    }
+    if (button) {
+      button.disabled = false;
+      button.innerHTML = "Send message <span>↗</span>";
+    }
   });
 }
 
@@ -176,8 +191,14 @@ initTheme();
 initContactForm();
 initRevealAnimations();
 initContributionGrid();
-$("#year").textContent = new Date().getFullYear();
-$("#project-modal").addEventListener("click", (event) => {
-  if (event.target === $("#project-modal")) $("#project-modal").close();
-});
+
+const yearEl = $("#year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+const modal = $("#project-modal");
+if (modal) {
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) modal.close();
+  });
+}
 $(".modal-close").addEventListener("click", () => $("#project-modal").close());
