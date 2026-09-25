@@ -29,7 +29,7 @@ const projects = [
 {
     title: "Star-Catcher-Game",
     category: "Frontend",
-    type: "Front-end",
+    type: "Frontend",
     description:
       "A gameplay arena for high-speed reflexes, cosmic collection, and precision scores.",
     tech: ["Hypertext Markup Language", "Cascading Style Sheets", "JavaScript"],
