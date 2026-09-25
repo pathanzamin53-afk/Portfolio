@@ -28,7 +28,7 @@ const projects = [
   },
 {
     title: "Star-Catcher-Game",
-    category: "Frontend",
+    category: "FullStack",
     type: "Frontend",
     description:
       "A gameplay arena for high-speed reflexes, cosmic collection, and precision scores.",
