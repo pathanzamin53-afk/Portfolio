@@ -13,7 +13,7 @@ const projects = [
     tech: ["HTML", "CSS", "JS", "Node.js", "MongoDB"],
     image: "image-one",
     github: "https://github.com",
-    live: "https://demo-avhj.vercel.app/",
+    live: "https://bushra-school.vercel.app",
   },
   {
     title: "Elysian Glow",
