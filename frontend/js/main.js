@@ -37,18 +37,6 @@ const projects = [
     github: "https://github.com",
     live: "https://star-catcher-iota.vercel.app/",
   },
-];
- {
-    title: "E-wadrobe",
-    category: "fullstack", // Fixed: "FullStack" ko "fullstack" kiya
-    type: "Full-Stack",
-    description:
-      "No fashion sense? No problem. Transform your closet instantly.",
-    tech: ["Hypertext Markup Language", "Cascading Style Sheets", "JavaScript"],
-    image: "image-two",
-    github: "https://github.com/pathanzamin53-afk/E-wadrobe/tree/main",
-    live: "https://e-wadrobe.vercel.app/",
-  },
 ]; // Fixed: Closing bracket lagaya
 
 const $ = (selector, parent = document) => parent.querySelector(selector); const $$ = (selector, parent = document) => [
