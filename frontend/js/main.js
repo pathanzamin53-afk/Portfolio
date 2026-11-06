@@ -27,6 +27,17 @@ const projects = [
     live: "https://thelooksfamilysalon.vercel.app",
   },
   {
+    title: "E-Wadrobe",
+    category: "fullstack",
+    type: "Full stack",
+    description:
+      "A modern ecommerce storefront for discovering curated fashion essentials with a clean, responsive shopping experience.",
+    tech: ["HTML", "CSS", "JavaScript", "React", "Node.js"],
+    image: "image-two",
+    github: "https://github.com/pathanzamin53-afk/E-wadrobe",
+    live: "https://e-wadrobe.vercel.app/",
+  },
+  {
     title: "Star-Catcher-Game",
     category: "fullstack", // Fixed: "FullStack" ko "fullstack" kiya
     type: "Frontend",
@@ -55,7 +66,10 @@ function renderProjects(filter = "all") {
   grid.innerHTML = list
     .map(
       (project, index) =>
-        `<article class="project-card" data-project="${projects.indexOf(project)}" style="animation-delay:${index * 70}ms"><div class="project-image ${project.image}"><span class="project-number">0${projects.indexOf(project) + 1} / ${project.type}</span></div><div class="project-info"><h3>${project.title}</h3><p>${project.description}</p><div class="tags">${project.tech.map((tech) => `<span class="tag">${tech}</span>`).join("")}</div></div></article>`,
+        `<article class="project-card" data-project="${projects.indexOf(project)}" style="animation-delay:${index * 70}ms"><div class="project-image ${project.image}"><span class="project-number">0${projects.indexOf(project) + 1}</span></div><div class="project-info"><h3>${project.title}</h3><p>${project.description}</p><div class="tags">${project.tech
+          .slice(0, 3)
+          .map((tag) => `<span class="tag">${tag}</span>`)
+          .join("")}</div></div></article>`,
     )
     .join("");
 
@@ -74,16 +88,18 @@ function openProject(index) {
   if (!modalContent || !projectModal) return;
 
   modalContent.innerHTML =
-    `<span class="modal-kicker">${project.type} / 2025</span><h2>${project.title}</h2><p>${project.description} This sample case study is ready for your own project details, outcomes, and story.</p><div class="tags">${project.tech.map((tech) => `<span class="tag">${tech}</span>`).join("")}</div><div class="modal-links"><a class="button button-primary" href="${project.live}" target="_blank" rel="noreferrer">Live demo ↗</a><a class="button button-ghost" href="${project.github}" target="_blank" rel="noreferrer">GitHub ↗</a></div>`;
+    `<span class="modal-kicker">${project.type} / 2025</span><h2>${project.title}</h2><p>${project.description} This sample case study is ready for your own project details, outcomes, and story.</p><div class="modal-tech">${project.tech.map((item) => `<span>${item}</span>`).join("")}</div><div class="modal-actions"><a class="button button-primary" href="${project.live}" target="_blank" rel="noreferrer">Live demo</a><a class="button button-ghost" href="${project.github}" target="_blank" rel="noreferrer">GitHub</a></div>`;
   
   projectModal.showModal();
 }
 
 function initNavigation() {
   const menu = $(".menu-toggle");
-  const links = $(".nav-links");   if (menu && links) {     menu.addEventListener("click", () => {       const open = links.classList.toggle("open");       menu.setAttribute("aria-expanded", open);     });   }    $$(".nav-link").forEach((link) =>
-    link.addEventListener("click", () => links?.classList.remove("open")),
-  );
+  const links = $(".nav-links");   if (menu && links) {     menu.addEventListener("click", () => {       const open = links.classList.toggle("open");       menu.setAttribute("aria-expanded", open);     });
+    links.querySelectorAll(".nav-link").forEach((link) =>
+      link.addEventListener("click", () => links?.classList.remove("open")),
+    );
+  }
 
   const sections = $$("main section[id]");   const navLinks = $$(".nav-link");
   const observer = new IntersectionObserver(
