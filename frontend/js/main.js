@@ -45,8 +45,8 @@ const projects = [
     description:
       "No fashion sense? No problem. Transform your closet instantly.",
     tech: ["Hypertext Markup Language", "Cascading Style Sheets", "JavaScript"],
-    image: "image-six",
-    github: "https://github.com",
+    image: "image-two",
+    github: "https://github.com/pathanzamin53-afk/E-wadrobe/tree/main",
     live: "https://e-wadrobe.vercel.app/",
   },
 ]; // Fixed: Closing bracket lagaya
