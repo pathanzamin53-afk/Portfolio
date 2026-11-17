@@ -92,6 +92,10 @@
     font-size: 50px;
     overflow-wrap: anywhere;
   }
+  body.light .hero h1 {
+    font-size: clamp(48px, 12vw, 58px);
+    letter-spacing: -0.055em;
+  }
   .hero-intro {
     font-size: 14px;
   }
@@ -100,6 +104,42 @@
   }
   .hero-visual {
     min-height: 330px;
+  }
+  .hero-visual::after {
+    width: 270px;
+    height: 270px;
+  }
+  .visual-orbit {
+    width: 120%;
+    height: 72%;
+  }
+  .visual-badge {
+    min-width: 0;
+    gap: 7px;
+    padding: 7px 8px;
+  }
+  .badge-icon {
+    width: 27px;
+    height: 27px;
+    font-size: 10px;
+  }
+  .visual-badge b {
+    font-size: 8px;
+  }
+  .visual-badge small {
+    display: none;
+  }
+  .badge-ui {
+    top: -8px;
+    left: 0;
+  }
+  .badge-api {
+    top: -8px;
+    right: 0;
+  }
+  .badge-data {
+    right: 0;
+    bottom: -8px;
   }
   .code-window {
     max-width: 100%;

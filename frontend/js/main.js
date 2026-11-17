@@ -48,9 +48,10 @@ const projects = [
     github: "https://github.com",
     live: "https://star-catcher-iota.vercel.app/",
   },
-]; // Fixed: Closing bracket lagaya
+];
 
-const $ = (selector, parent = document) => parent.querySelector(selector); const $$ = (selector, parent = document) => [
+const $ = (selector, parent = document) => parent.querySelector(selector);
+const $$ = (selector, parent = document) => [
   ...parent.querySelectorAll(selector),
 ];
 
@@ -122,12 +123,9 @@ function initTheme() {
   const button = $(".theme-toggle");
   if (!button) return;
 
-  const saved = localStorage.getItem("portfolio-theme");
-  if (saved === "light") document.body.classList.add("light");
-  
+  document.body.classList.add("light");
   const update = () => {
     const light = document.body.classList.toggle("light");
-    localStorage.setItem("portfolio-theme", light ? "light" : "dark");
     button.setAttribute(
       "aria-label",
       `Switch to ${light ? "dark" : "light"} theme`,
@@ -139,8 +137,12 @@ function initTheme() {
   button.addEventListener("click", update);
   const icon = $(".theme-icon", button);
   if (icon) {
-    icon.textContent = document.body.classList.contains("light") ? "☾" : "☼";
+    icon.textContent = "☾";
   }
+  button.setAttribute(
+    "aria-label",
+    "Switch to dark theme",
+  );
 }
 
 function initContactForm() {

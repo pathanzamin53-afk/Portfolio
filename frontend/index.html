@@ -81,12 +81,12 @@
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -95,7 +95,7 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <script type="module" src="js/main.js"></script>
   </head>
-  <body>
+  <body class="light">
     <div class="noise" aria-hidden="true"></div>
     <header class="site-header" id="top">
       <nav class="nav shell" aria-label="Main navigation">
@@ -165,6 +165,21 @@
         <div class="hero-visual reveal delay-1">
           <div class="orb orb-one"></div>
           <div class="orb orb-two"></div>
+          <div class="visual-orbit" aria-hidden="true">
+            <span class="orbit-spark"></span>
+          </div>
+          <div class="visual-badge badge-ui" aria-hidden="true">
+            <span class="badge-icon">&lt;/&gt;</span>
+            <span><b>FRONTEND</b><small>Interfaces</small></span>
+          </div>
+          <div class="visual-badge badge-api" aria-hidden="true">
+            <span class="badge-icon">{ }</span>
+            <span><b>BACKEND</b><small>Reliable systems</small></span>
+          </div>
+          <div class="visual-badge badge-data" aria-hidden="true">
+            <span class="badge-icon">◎</span>
+            <span><b>DATABASE</b><small>Built to scale</small></span>
+          </div>
           <div class="code-window">
             <div class="window-bar">
               <span class="window-dots">
