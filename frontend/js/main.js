@@ -57,7 +57,7 @@ const projects = [
     tech: ["Hypertext Markup Language", "Cascading Style Sheets", "JavaScript"],
     image: "image-six",
     github: "https://github.com",
-    live: "https://star-catcher-iota.vercel.app/",
+    live: "https://demo-restro-ashy.vercel.app",
   },
 ];
 
