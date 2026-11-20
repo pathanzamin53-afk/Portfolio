@@ -48,6 +48,17 @@ const projects = [
     github: "https://github.com",
     live: "https://star-catcher-iota.vercel.app/",
   },
+   {
+    title: "Demo Restro",
+    category: "fullstack", // Fixed: "FullStack" ko "fullstack" kiya
+    type: "Full stack",
+    description:
+      "Demo.",
+    tech: ["Hypertext Markup Language", "Cascading Style Sheets", "JavaScript"],
+    image: "image-six",
+    github: "https://github.com",
+    live: "https://star-catcher-iota.vercel.app/",
+  },
 ];
 
 const $ = (selector, parent = document) => parent.querySelector(selector);
