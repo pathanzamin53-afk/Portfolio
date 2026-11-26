@@ -1,0 +1,10 @@
+{
+  "name": "zamin-portfolio-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio contact form backend with WhatsApp handoff",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
